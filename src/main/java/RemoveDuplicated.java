@@ -21,8 +21,8 @@ public class RemoveDuplicated {
             // arr[1] = msisdn
 
             if (set.contains(arr[1])) {
-                String s = "DELETE from tb_mailing_ta_ivr_carga where ID_MAILING_IVR_REG = " + arr[0] + ";\r\n";
-                System.out.print(s);
+                String s = "DELETE from tb_mailing_ta_ivr_carga where ROWID = " + arr[0] + ";\r\n";
+
                 writer.write(s);
                 writer.write("COMMIT;\r\n");
             } else {
