@@ -81,5 +81,10 @@ public class MinHeap <T extends Comparable<T>> {
         public T next() {
             return null;
         }
+
+        @Override
+        public void remove() {
+
+        }
     }
 }

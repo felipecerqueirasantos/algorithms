@@ -3,7 +3,7 @@
  */
 
 /* Description:
- * Given an array with elements check if just by exchanging two elements of the array we get a sorted array.
+ * Given an array with elements checkInOrder if just by exchanging two elements of the array we get a sorted array.
  */
 public class CheckSorted {
     public static int countOutOfOrderElements(int[] arr) {

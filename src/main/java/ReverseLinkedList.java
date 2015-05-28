@@ -23,17 +23,17 @@ public class ReverseLinkedList {
         printLinkedList(head);
     }
 
-    private static void printLinkedList(Node<Integer> head) {
-        Node current = head;
+    private static <T> void printLinkedList(Node<T> head) {
+        Node<T> current = head;
         while (current != null) {
             System.out.println(current.value);
             current = current.next;
         }
     }
 
-    private static Node<Integer> reverseLinkedList(Node<Integer> head) {
-        Node<Integer> current = head;
-        Node<Integer> prev = null;
+    private static <T> Node<T> reverseLinkedList(Node<T> head) {
+        Node<T> current = head;
+        Node<T> prev = null;
 
         while (current != null) {
             Node t = current.next;

@@ -70,6 +70,11 @@ public class BinaryTreeConnectHorizontalElements {
                 cursor = cursor.next;
                 return val;
             }
+
+            @Override
+            public void remove() {
+
+            }
         }
 
         @Override
