@@ -18,7 +18,11 @@ public class Restaurant {
 
     private final String name;
     private final RestaurantResources restaurantResources;
-    private final Map<Date, Availability> availabilityMap = new HashMap<>();
+
+    // Just two types (lunch and dinner)
+    private final Map<Date, Availability> availabilityMapForLunch = new HashMap<>();
+    private final Map<Date, Availability> availabilityMapForDinner = new HashMap<>();
+
     private final List<Reservation> reservationList = new ArrayList<>();
 
     public Restaurant(String name, RestaurantResources restaurantResources) {
@@ -30,11 +34,7 @@ public class Restaurant {
         if (employee.getEmployeeType() != Employee.EmployeeType.ATTENDANT)
             throw new RestaurantException("You do not have access to checkAvailability");
 
-        Availability availability = availabilityMap.get(party.getDate());
-        if (availability == null) {
-            availability = new Availability(restaurantResources.getTableList());
-            availabilityMap.put(party.getDate(), availability);
-        }
+        Availability availability = checkAvailability(party);
 
         try {
             List<Table> tables = availability.getTables(party.getTotalOfGuests());
@@ -48,6 +48,26 @@ public class Restaurant {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    private Availability checkAvailability(Party party) {
+        Availability availability = null;
+
+        if (party.getPartyType() == Party.PartyType.LUNCH) {
+            availability = availabilityMapForLunch.get(party.getDate());
+            if (availability == null) {
+                availability = new Availability(restaurantResources.getTableList());
+                availabilityMapForLunch.put(party.getDate(), availability);
+            }
+        } else if (party.getPartyType() == Party.PartyType.DINNER) {
+            availability = availabilityMapForDinner.get(party.getDate());
+            if (availability == null) {
+                availability = new Availability(restaurantResources.getTableList());
+                availabilityMapForDinner.put(party.getDate(), availability);
+            }
+        }
+
+        return availability;
     }
 
     public String getName() {

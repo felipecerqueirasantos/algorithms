@@ -7,11 +7,11 @@ import java.util.List;
  * Created by sky on 05/06/15.
  */
 public final class Availability {
-    private final List<Table> tableList;
+    private final List<Table> tableList = new ArrayList<>();
     private int totalOfChairs;
 
     public Availability(List<Table> tableList) {
-        this.tableList = tableList;
+        this.tableList.addAll(tableList);
         updateTotalOfChairs();
     }
 
