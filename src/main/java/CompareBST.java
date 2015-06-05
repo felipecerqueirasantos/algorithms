@@ -14,6 +14,9 @@ public class CompareBST {
     }
 
     public static <T extends Comparable<T>> boolean compareBST(Node<T> node1, Node<T> node2) {
+        if (node1 != null) System.out.println(node1.value);
+        if (node2 != null) System.out.println(node2.value);
+
         if (node1 == null && node2 == null)
             return true;
 
